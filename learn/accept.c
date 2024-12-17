@@ -1,7 +1,8 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <stdio.h>
-#include <stdlib.h>     // exit,
+#include <stdlib.h> // exit,
+#include <string.h>
 #include <sys/socket.h> // socket, bind
 #include <unistd.h>     // write
 
@@ -57,9 +58,9 @@ int main(int argc, char **argv) {
   inet_ntop(AF_INET, &client_addr.sin_addr, client_ip, sizeof(client_ip));
   //   ntohs(): Converts the client's port number from network byte order to
   //   host byte order.
-  int client_port = htohs(client_addr.sin_port);
+  int client_port = ntohs(client_addr.sin_port);
 
-  printf("Accepter connection from client IP: %s, Port %d\n", client_ip,
+  printf("Accepted connection from client IP: %s, Port %d\n", client_ip,
          client_port);
 
   const char *msg = "Welcome to the server!\n";
