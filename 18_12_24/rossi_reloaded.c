@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 
   struct sockaddr_in addr;
   socklen_t addrlen;
-  int server_fd = socker(AF_INET, SOCK_STREAM, 0);
+  int server_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (server_fd == -1)
     err(NULL);
   max_fd = server_fd;
@@ -58,7 +58,8 @@ int main(int argc, char **argv) {
 
   while (1) {
     read_set = write_set = all_set;
-    select(max_fd + 1, &read_set, &write_set, 0, 0) == -1;
+    if (select(max_fd + 1, &read_set, &write_set, 0, 0) == -1)
+      continue;
 
     for (int fd = 0; fd <= max_fd; fd++) {
       if (FD_ISSET(fd, &read_set)) {
