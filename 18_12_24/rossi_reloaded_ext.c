@@ -5,6 +5,9 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#define MAX_SEND_BUFFER_SIZE 1000100
+#define MAX_RECV_BUFFER_SIZE 1000100
+
 typedef struct s_client {
   int id;
   //   char msg[290000];
@@ -15,7 +18,7 @@ t_client clients[1024];
 fd_set read_set, write_set, all_set;
 int max_fd = 0, gid = 0; // What is gid?
 // char send_buffer[300000], recv_buffer[300000];
-char send_buffer[1000000], recv_buffer[1000000];
+char send_buffer[MAX_SEND_BUFFER_SIZE], recv_buffer[MAX_RECV_BUFFER_SIZE];
 
 void err(char *msg) {
   if (msg)
@@ -82,6 +85,7 @@ int main(int argc, char **argv) {
           // are messages with new lines ready to be sent in the clients arraa
           int ret = recv(fd, recv_buffer, sizeof(recv_buffer), 0);
           if (ret <= 0) {
+
             sprintf(send_buffer, "server: client %d just left\n",
                     clients[fd].id);
             send_to_all(fd);
@@ -98,6 +102,11 @@ int main(int argc, char **argv) {
                 clients[fd].msg[j] = '\0';
                 sprintf(send_buffer, "client %d: %s\n", clients[fd].id,
                         clients[fd].msg);
+                // Simple length check before using sprintf
+                // if (strlen(send_buffer) + 20 < MAX_SEND_BUFFER_SIZE) {
+                //  sprintf(send_buffer, "client %d: %s\n", clients[fd].id,
+                //          clients[fd].msg);
+
                 send_to_all(fd);
                 bzero(clients[fd].msg, strlen(clients[fd].msg));
                 j = -1;
