@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
             max_fd = client_fd;
           FD_SET(client_fd, &all_set);
           clients[client_fd].id = gid++;
-          sprintf(send_buffer, "server:client %d just arrived\n",
+          sprintf(send_buffer, "server: client %d just arrived\n",
                   clients[client_fd].id);
           send_to_all(client_fd);
         } else {
