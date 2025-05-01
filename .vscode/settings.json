@@ -1,9 +1,16 @@
 {
-	"workbench.colorCustomizations": {
-		"activityBar.background": "#2A300D",
-		"titleBar.activeBackground": "#3B4412",
-		"titleBar.activeForeground": "#FAFBF2"
-	},
-	"C_Cpp.clang_format_path": "/sgoinfre/goinfre/Perso/slombard/homebrew/opt/clang-format/bin/clang-format",
-	"editor.formatOnSave": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#2A300D",
+    "titleBar.activeBackground": "#3B4412",
+    "titleBar.activeForeground": "#FAFBF2"
+  },
+  "editor.quickSuggestions": {
+	"comments": "off",
+	"strings": "off",
+	"other": "off"
+},
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.inlineSuggest.enabled": false,
+  "C_Cpp.clang_format_path": "/sgoinfre/goinfre/Perso/slombard/homebrew/opt/clang-format/bin/clang-format",
+  "editor.formatOnSave": true
 }

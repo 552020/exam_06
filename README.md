@@ -1,5 +1,12 @@
 # exam_06
 
+## How to start Docker with a mounted volumd
+
+```
+#!/bin/bash
+docker run -it --rm -v $(pwd)/30_04_25:/root/30_04_25 ubuntu:latest
+```
+
 ## Notes about Rossi
 
 ### Why do we FD_ZERO only current?
