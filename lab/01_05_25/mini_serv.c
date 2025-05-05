@@ -59,9 +59,9 @@ char *str_join(char *buf, char *add) {
 // 6 functions:
 // void fatal_error(); // 2 lines
 // int create_socket(); // 5 lines
-// void notify_others(int author, char *str); // 3 lines
 // void register_client(int fd); // 6 lines
 // void remove_client(int fd); // 5 lines
+// void notify_others(int author, char *str); // 3 lines
 // void send_msg(int fd); // 6 lines
 
 void fatal_error() {
@@ -162,6 +162,7 @@ int main(int argc, char **argv) {
   while (1) {
     // A
     wfds = rfds = afds;
+    select(max_fd + 1, &rfds, &wfds, NULL, NULL);
     // B
     for (int fd = 0; fd <= max_fd; fd++) {
       // C
@@ -171,7 +172,7 @@ int main(int argc, char **argv) {
         // D 1  - 5 lines
         socklen_t len = sizeof(servaddr);
         int client_fd = accept(sockfd, (struct sockaddr *)&servaddr, &len);
-        if (client_fd > 0) {
+        if (client_fd >= 0) {
           register_client(client_fd);
           break;
         }
