@@ -7,13 +7,15 @@
 
 typedef struct s_client {
   int id;
-  char msg[290000];
+  // char msg[290000];
+  char msg[1100000];
 } t_client;
 
 t_client clients[1024];
 fd_set read_set, write_set, all_set;
 int max_fd = 0, gid = 0; // What is gid? Global ID?
-char send_buffer[300000], recv_buffer[300000];
+char send_buffer[1100042], recv_buffer[1000000];
+// char send_buffer[300000], recv_buffer[300000];
 
 void err(char *msg) {
   if (msg)

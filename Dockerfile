@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     vim \
     locales \
+    netcat-openbsd \
     && locale-gen en_US.UTF-8 \
     && update-locale LANG=en_US.UTF-8 \
     && rm -rf /var/lib/apt/lists/*

@@ -4,7 +4,20 @@
 
 ```
 #!/bin/bash
-docker run -it --rm -v $(pwd)/30_04_25:/root/30_04_25 ubuntu:latest
+docker run -it --rm -v $(pwd)/:/root/exam_06/ ubuntu:latest
+```
+
+```
+cc -Wextra -Wall -Werror mini_serv.c
+```
+
+```
+docker exec -it compassionate_kirch bash
+```
+
+```
+apt update
+apt install netcat-openbsd
 ```
 
 ## Notes about Rossi
